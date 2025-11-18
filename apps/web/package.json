@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@scrutinium/db": "workspace:*",
     "@scrutinium/ui": "workspace:*",
     "class-variance-authority": "^0.7.0",
     "lucide-react": "^0.474.0",

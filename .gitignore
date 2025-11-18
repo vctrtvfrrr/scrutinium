@@ -37,7 +37,6 @@ dist
 
 # Local data
 *.db
-drizzle
 
 # Finder (MacOS) folder config
 .DS_Store
