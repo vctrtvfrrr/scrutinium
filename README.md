@@ -1,0 +1,3 @@
+# Scrutinium
+
+An Election Application
