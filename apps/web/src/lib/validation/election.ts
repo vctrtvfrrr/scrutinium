@@ -15,6 +15,16 @@ export const createElectionPayloadSchema = z.object({
 
 export type CreateElectionPayload = z.infer<typeof createElectionPayloadSchema>;
 
+export const electionFormSchema = z.object({
+  description: z.string().min(1).max(500),
+  position: z.string().min(1).max(200),
+  term: z.string().min(1).max(200),
+  seats: z.coerce.number().int().min(1).max(50),
+  candidatesText: z.string().min(1, "Add at least one candidate name")
+});
+
+export type ElectionFormValues = z.infer<typeof electionFormSchema>;
+
 export const voteAdjustmentSchema = z.object({
   ballotId: z.string().min(1),
   candidateId: z.string().min(1),

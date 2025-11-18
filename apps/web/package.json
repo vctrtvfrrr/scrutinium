@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
     "@scrutinium/db": "workspace:*",
     "@scrutinium/ui": "workspace:*",
     "class-variance-authority": "^0.7.0",
@@ -16,6 +17,7 @@
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-hook-form": "^7.53.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {
