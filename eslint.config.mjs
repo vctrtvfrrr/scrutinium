@@ -23,7 +23,8 @@ const baseConfig = defineConfig([
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
       parserOptions: {
-        projectService: true
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname
       }
     }
   }

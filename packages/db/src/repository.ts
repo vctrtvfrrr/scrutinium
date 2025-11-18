@@ -14,11 +14,13 @@ import {
   type NewElectionInput,
   runoffBallotSchema,
   type RunoffBallotInput,
+  voteAdjustmentSchema,
+  type VoteAdjustmentInput,
   voteUpdateSchema,
   type VoteUpdateInput
 } from "./types";
 
-const now = () => Date.now();
+const now = () => new Date();
 
 export async function createElection(input: NewElectionInput) {
   const payload = newElectionSchema.parse(input);
@@ -149,6 +151,39 @@ export async function setVoteCounts(updates: VoteUpdateInput[]) {
           )
         );
     }
+  });
+}
+
+export async function adjustVoteCount(input: VoteAdjustmentInput) {
+  const payload = voteAdjustmentSchema.parse(input);
+
+  return db.transaction(async (tx) => {
+    const existing = await tx.query.ballotVotes.findFirst({
+      where: (record, { and, eq }) =>
+        and(
+          eq(record.ballotId, payload.ballotId),
+          eq(record.candidateId, payload.candidateId)
+        )
+    });
+
+    if (!existing) {
+      throw new Error("Candidate vote record not found");
+    }
+
+    const currentVotes = existing.votes;
+    const nextVotes = Math.max(0, currentVotes + payload.delta);
+
+    await tx
+      .update(ballotVotes)
+      .set({ votes: nextVotes, updatedAt: now() })
+      .where(
+        and(
+          eq(ballotVotes.ballotId, payload.ballotId),
+          eq(ballotVotes.candidateId, payload.candidateId)
+        )
+      );
+
+    return nextVotes;
   });
 }
 

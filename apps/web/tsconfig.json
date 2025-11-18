@@ -5,6 +5,7 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
     "noEmit": true,
+    "baseUrl": ".",
     "isolatedModules": true,
     "incremental": true,
     "plugins": [

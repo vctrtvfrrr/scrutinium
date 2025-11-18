@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
-const config = {
+const config: Config = {
+  content: [],
   darkMode: ["class"],
   theme: {
     container: {
@@ -70,7 +71,7 @@ const config = {
       }
     }
   }
-} satisfies Config;
+};
 
 export default config;
 

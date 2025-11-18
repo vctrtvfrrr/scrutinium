@@ -24,6 +24,14 @@ export const voteUpdateSchema = z.object({
 
 export type VoteUpdateInput = z.infer<typeof voteUpdateSchema>;
 
+export const voteAdjustmentSchema = z.object({
+  ballotId: z.string().min(1),
+  candidateId: z.string().min(1),
+  delta: z.number().int()
+});
+
+export type VoteAdjustmentInput = z.infer<typeof voteAdjustmentSchema>;
+
 export const runoffBallotSchema = z.object({
   electionId: z.string().min(1),
   candidateIds: z.array(z.string().min(1)).min(1),

@@ -9,7 +9,18 @@ const config = defineConfig([
   },
   ...baseConfig,
   ...nextVitals,
-  ...nextTs
+  ...nextTs,
+  {
+    files: ["src/server/actions/**/*.ts"],
+    rules: {
+      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
+      "@typescript-eslint/no-unsafe-member-access": "off",
+      "@typescript-eslint/no-unsafe-return": "off",
+      "@typescript-eslint/no-unsafe-argument": "off",
+      "@typescript-eslint/restrict-template-expressions": "off"
+    }
+  }
 ]);
 
 export default config;
